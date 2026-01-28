@@ -1,0 +1,541 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="unitechRFIDSampleMAUI.DevicePage"
+             Title="Device Details">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Find Device"
+                     IconImageSource="search.png"
+                     Order="Secondary"
+                     Priority="0"
+                     Clicked="OnFindDeviceClicked"/>
+        <ToolbarItem Text="Change Read Mode"
+                     IconImageSource="settings.png"
+                     Order="Secondary"
+                     Priority="1"
+                     Clicked="OnChangeReadModeClicked"/>
+        <ToolbarItem Text="Change Connection Mode"
+                     IconImageSource="tune.png"
+                     Order="Secondary"
+                     Priority="2"
+                     Clicked="OnChangeConnectionModeClicked"/>
+        <ToolbarItem Text="Factory Reset"
+                     IconImageSource="restore.png"
+                     Order="Secondary"
+                     Priority="3"
+                     Clicked="OnFactoryResetClicked"/>
+        <ToolbarItem Text="Set Region US"
+                     IconImageSource="us.png"
+                     Order="Secondary"
+                     Priority="4"
+                     Clicked="OnSetRegionUSClicked"/>
+        <ToolbarItem Text="Set Region Europe"
+                     IconImageSource="eu.png"
+                     Order="Secondary"
+                     Priority="5"
+                     Clicked="OnSetRegionEUClicked"/>
+    </ContentPage.ToolbarItems>
+
+    <ScrollView>
+        <VerticalStackLayout
+            Spacing="0"
+            Padding="10,0"
+            VerticalOptions="Center">
+
+            <!-- Info and Settings buttons row -->
+            <Grid
+                ColumnDefinitions="*,*"
+                ColumnSpacing="20"
+                HorizontalOptions="Center"
+                Margin="0,10,0,10"
+                WidthRequest="220">
+
+                <Button
+                    x:Name="InfoBtn"
+                    Grid.Column="0"
+                    Text="Info"
+                    SemanticProperties.Hint="View device information"
+                    Clicked="OnInfoClicked"
+                    BackgroundColor="#2196F3"
+                    TextColor="White"
+                    WidthRequest="100"
+                    HeightRequest="40"/>
+
+                <Button
+                    x:Name="SettingsBtn"
+                    Grid.Column="1"
+                    Text="Settings"
+                    SemanticProperties.Hint="Configure device settings"
+                    Clicked="OnSettingsClicked"
+                    BackgroundColor="#FF9800"
+                    TextColor="White"
+                    WidthRequest="100"
+                    HeightRequest="40"/>
+
+            </Grid>
+
+            <!-- Connect State row -->
+            <HorizontalStackLayout
+                Spacing="10"
+                HorizontalOptions="Start"
+                Margin="5,5,5,5">
+
+                <Label
+                    Text="Connect State:"
+                    FontSize="16"
+                    FontAttributes="Bold"
+                    VerticalOptions="Center"/>
+
+                <Label
+                    x:Name="ConnectStateLabel"
+                    Text="Disconnected"
+                    FontSize="16"
+                    TextColor="Red"
+                    VerticalOptions="Center"/>
+
+            </HorizontalStackLayout>
+
+            <!-- Battery and Temperature row -->
+            <Grid
+                ColumnDefinitions="*,140"
+                Margin="5,5,5,5">
+
+                <!-- Battery Status (Left aligned) -->
+                <HorizontalStackLayout
+                    Grid.Column="0"
+                    Spacing="5"
+                    HorizontalOptions="Start">
+                    <Label
+                        Text="Battery:"
+                        FontSize="14"
+                        FontAttributes="Bold"
+                        VerticalOptions="Center"/>
+
+                    <Label
+                        x:Name="BatteryLabel"
+                        Text="--"
+                        FontSize="14"
+                        TextColor="Gray"
+                        VerticalOptions="Center"/>
+                </HorizontalStackLayout>
+
+                <!-- Temperature Status (Right aligned with fixed width) -->
+                <HorizontalStackLayout
+                    Grid.Column="1"
+                    Spacing="5"
+                    HorizontalOptions="End">
+                    <Label
+                        Text="Temp:"
+                        FontSize="14"
+                        FontAttributes="Bold"
+                        VerticalOptions="Center"/>
+
+                    <Label
+                        x:Name="TemperatureLabel"
+                        Text="--°C"
+                        FontSize="14"
+                        TextColor="Gray"
+                        VerticalOptions="Center"
+                        WidthRequest="50"/>
+                </HorizontalStackLayout>
+
+            </Grid>
+
+            <!-- Inventory Button -->
+            <Button
+                x:Name="InventoryBtn"
+                Text="Inventory"
+                SemanticProperties.Hint="Start RFID tag inventory"
+                Clicked="OnInventoryClicked"
+                BackgroundColor="#4CAF50"
+                TextColor="White"
+                HorizontalOptions="Fill"
+                HeightRequest="40"
+                Margin="5,5,5,5"/>
+
+            <!-- Custom Inventory Button -->
+            <Button
+                x:Name="CustomInventoryBtn"
+                Text="Custom Inventory"
+                SemanticProperties.Hint="Start custom RFID tag inventory with advanced settings"
+                Clicked="OnCustomInventoryClicked"
+                BackgroundColor="#FF6B35"
+                TextColor="White"
+                HorizontalOptions="Fill"
+                HeightRequest="40"
+                Margin="5,5,5,5"/>
+
+            <!-- Fast ID Switch -->
+            <Grid
+                x:Name="FastIdRow"
+                ColumnDefinitions="*,Auto"
+                Margin="5,2,5,2">
+
+                <Label
+                    Grid.Column="0"
+                    Text="Fast ID"
+                    FontSize="14"
+                    FontAttributes="Bold"
+                    VerticalOptions="Center"
+                    HorizontalOptions="Start"/>
+
+                <Switch
+                    Grid.Column="1"
+                    x:Name="FastIdSwitch"
+                    IsToggled="False"
+                    Toggled="OnFastIdToggled"
+                    VerticalOptions="Center"
+                    HorizontalOptions="End"/>
+
+            </Grid>
+
+            <!-- Gen2x Switch -->
+            <Grid
+                x:Name="Gen2xRow"
+                ColumnDefinitions="*,Auto"
+                Margin="5,2,5,2">
+
+                <Label
+                    Grid.Column="0"
+                    Text="Gen2x"
+                    FontSize="14"
+                    FontAttributes="Bold"
+                    VerticalOptions="Center"
+                    HorizontalOptions="Start"/>
+
+                <Switch
+                    Grid.Column="1"
+                    x:Name="Gen2xSwitch"
+                    IsToggled="False"
+                    Toggled="OnGen2xToggled"
+                    VerticalOptions="Center"
+                    HorizontalOptions="End"/>
+
+            </Grid>
+
+            <!-- EPC Display Row -->
+            <HorizontalStackLayout
+                Spacing="5"
+                HorizontalOptions="Start"
+                Margin="5,5,5,5">
+                <Label
+                    Text="EPC:"
+                    FontSize="14"
+                    FontAttributes="Bold"
+                    VerticalOptions="Center"/>
+
+                <Label
+                    x:Name="EpcLabel"
+                    Text="--"
+                    FontSize="14"
+                    TextColor="Gray"
+                    VerticalOptions="Center"
+                    MaximumWidthRequest="300"/>
+            </HorizontalStackLayout>
+
+            <!-- RSSI Display Row (under EPC) -->
+            <HorizontalStackLayout
+                Spacing="5"
+                HorizontalOptions="Start"
+                Margin="5,0,5,5">
+                <Label
+                    Text="RSSI:"
+                    FontSize="14"
+                    FontAttributes="Bold"
+                    VerticalOptions="Center"/>
+
+                <Label
+                    x:Name="RssiLabel"
+                    Text="--"
+                    FontSize="14"
+                    TextColor="Gray"
+                    VerticalOptions="Center"
+                    WidthRequest="50"/>
+            </HorizontalStackLayout>
+
+            <!-- TID Display Row -->
+            <HorizontalStackLayout
+                x:Name="TidRow"
+                HorizontalOptions="Start"
+                Spacing="10"
+                Margin="5,5,5,5">
+
+                <Label
+                    Text="TID:"
+                    FontSize="14"
+                    FontAttributes="Bold"
+                    VerticalOptions="Center"/>
+
+                <Label
+                    x:Name="TidLabel"
+                    Text="--"
+                    FontSize="14"
+                    TextColor="Gray"
+                    VerticalOptions="Center"
+                    MaximumWidthRequest="200"/>
+
+            </HorizontalStackLayout>
+
+            <!-- SGTIN Display Row -->
+            <HorizontalStackLayout
+                HorizontalOptions="Start"
+                Spacing="10"
+                Margin="5,5,5,5">
+
+                <Label
+                    Text="SGTIN:"
+                    FontSize="14"
+                    FontAttributes="Bold"
+                    VerticalOptions="Center"/>
+
+                <Label
+                    x:Name="SgtinLabel"
+                    Text="--"
+                    FontSize="14"
+                    TextColor="Gray"
+                    VerticalOptions="Center"
+                    MaximumWidthRequest="250"/>
+
+            </HorizontalStackLayout>
+
+            <!-- Find Tag Button -->
+            <Button
+                x:Name="FindTagBtn"
+                Text="Find Tag"
+                SemanticProperties.Hint="Find and locate a specific RFID tag"
+                Clicked="OnFindTagClicked"
+                BackgroundColor="#9C27B0"
+                TextColor="White"
+                HorizontalOptions="Fill"
+                HeightRequest="40"
+                Margin="5,5,5,5"/>
+
+            <!-- Progress Row -->
+            <ProgressBar
+                x:Name="ProgressBar"
+                Progress="0"
+                ProgressColor="#4CAF50"
+                BackgroundColor="#E0E0E0"
+                HorizontalOptions="Fill"
+                HeightRequest="10"
+                VerticalOptions="Center"
+                Margin="5,5,5,5"/>
+
+            <!-- Read and Write buttons row -->
+            <HorizontalStackLayout
+                Spacing="20"
+                HorizontalOptions="Center"
+                Margin="0,10,0,10">
+
+                <Button
+                    x:Name="ReadBtn"
+                    Text="Read"
+                    SemanticProperties.Hint="Read data from RFID tag"
+                    Clicked="OnReadClicked"
+                    BackgroundColor="#03A9F4"
+                    TextColor="White"
+                    WidthRequest="100"
+                    HeightRequest="40"/>
+
+                <Button
+                    x:Name="WriteBtn"
+                    Text="Write"
+                    SemanticProperties.Hint="Write data to RFID tag"
+                    Clicked="OnWriteClicked"
+                    BackgroundColor="#E91E63"
+                    TextColor="White"
+                    WidthRequest="100"
+                    HeightRequest="40"/>
+
+            </HorizontalStackLayout>
+
+            <!-- Lock and Unlock buttons row -->
+            <HorizontalStackLayout
+                Spacing="20"
+                HorizontalOptions="Center"
+                Margin="0,10,0,10">
+
+                <Button
+                    x:Name="LockBtn"
+                    Text="Lock"
+                    SemanticProperties.Hint="Lock RFID tag to prevent modifications"
+                    Clicked="OnLockClicked"
+                    BackgroundColor="#F44336"
+                    TextColor="White"
+                    WidthRequest="100"
+                    HeightRequest="40"/>
+
+                <Button
+                    x:Name="UnlockBtn"
+                    Text="Unlock"
+                    SemanticProperties.Hint="Unlock RFID tag to allow modifications"
+                    Clicked="OnUnlockClicked"
+                    BackgroundColor="#8BC34A"
+                    TextColor="White"
+                    WidthRequest="100"
+                    HeightRequest="40"/>
+
+            </HorizontalStackLayout>
+
+            <!-- Result Display Row -->
+            <HorizontalStackLayout
+                HorizontalOptions="Start"
+                Spacing="10"
+                Margin="5,5,5,5">
+
+                <Label
+                    Text="Result:"
+                    FontSize="14"
+                    FontAttributes="Bold"
+                    VerticalOptions="Center"/>
+
+                <Label
+                    x:Name="ResultLabel"
+                    Text="--"
+                    FontSize="14"
+                    TextColor="Gray"
+                    VerticalOptions="Center"
+                    MaximumWidthRequest="200"/>
+
+            </HorizontalStackLayout>
+
+            <!-- Data Display Row -->
+            <HorizontalStackLayout
+                HorizontalOptions="Start"
+                Spacing="10"
+                Margin="5,5,5,5">
+
+                <Label
+                    Text="Data:"
+                    FontSize="14"
+                    FontAttributes="Bold"
+                    VerticalOptions="Center"/>
+
+                <Label
+                    x:Name="DataLabel"
+                    Text="--"
+                    FontSize="14"
+                    TextColor="Gray"
+                    VerticalOptions="Center"
+                    MaximumWidthRequest="250"/>
+
+            </HorizontalStackLayout>
+
+            <!-- Timestamp Display Row -->
+            <HorizontalStackLayout
+                HorizontalOptions="Start"
+                Spacing="10"
+                Margin="5,5,5,5">
+
+                <Label
+                    Text="Timestamp:"
+                    FontSize="14"
+                    FontAttributes="Bold"
+                    VerticalOptions="Center"/>
+
+                <Label
+                    x:Name="TimestampLabel"
+                    Text="--"
+                    FontSize="14"
+                    TextColor="Gray"
+                    VerticalOptions="Center"
+                    MaximumWidthRequest="180"/>
+
+            </HorizontalStackLayout>
+
+            <!-- Barcode ID Display Row -->
+            <HorizontalStackLayout
+                x:Name="BarcodeIdRow"
+                HorizontalOptions="Start"
+                Spacing="10"
+                Margin="5,5,5,5">
+
+                <Label
+                    Text="Barcode ID:"
+                    FontSize="14"
+                    FontAttributes="Bold"
+                    VerticalOptions="Center"/>
+
+                <Label
+                    x:Name="BarcodeIdLabel"
+                    Text="--"
+                    FontSize="14"
+                    TextColor="Gray"
+                    VerticalOptions="Center"
+                    MaximumWidthRequest="200"/>
+
+            </HorizontalStackLayout>
+
+            <!-- Barcode Data Display Row -->
+            <HorizontalStackLayout
+                x:Name="BarcodeDataRow"
+                HorizontalOptions="Start"
+                Spacing="10"
+                Margin="5,5,5,5">
+
+                <Label
+                    Text="Barcode Data:"
+                    FontSize="14"
+                    FontAttributes="Bold"
+                    VerticalOptions="Center"/>
+
+                <Label
+                    x:Name="BarcodeDataLabel"
+                    Text="--"
+                    FontSize="14"
+                    TextColor="Gray"
+                    VerticalOptions="Center"
+                    MaximumWidthRequest="250"/>
+
+            </HorizontalStackLayout>
+
+            <!-- Display Text On Screen Section -->
+            <Frame
+                x:Name="DisplayTextFrame"
+                BackgroundColor="White"
+                BorderColor="#E0E0E0"
+                CornerRadius="6"
+                Padding="10"
+                Margin="5,8,5,8">
+
+                <VerticalStackLayout Spacing="8">
+                    <!-- Section Header -->
+                    <Label
+                        Text="Display Text On Screen"
+                        FontSize="14"
+                        FontAttributes="Bold"
+                        HorizontalOptions="Start"
+                        TextColor="#333"/>
+
+                    <!-- Text Input and Send Button Row -->
+                    <Grid ColumnDefinitions="*,Auto"
+                          ColumnSpacing="8">
+                        <!-- Text Input Area -->
+                        <Entry
+                            x:Name="DisplayTextEntry"
+                            Grid.Column="0"
+                            Placeholder="Enter text to display..."
+                            FontSize="14"
+                            HeightRequest="44"/>
+
+                        <!-- Send Button -->
+                        <Button
+                            x:Name="SendBtn"
+                            Grid.Column="1"
+                            Text="Send"
+                            SemanticProperties.Hint="Send text to display on device screen"
+                            Clicked="OnSendClicked"
+                            BackgroundColor="#673AB7"
+                            TextColor="White"
+                            FontSize="14"
+                            HeightRequest="44"
+                            WidthRequest="80"/>
+                    </Grid>
+                </VerticalStackLayout>
+            </Frame>
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

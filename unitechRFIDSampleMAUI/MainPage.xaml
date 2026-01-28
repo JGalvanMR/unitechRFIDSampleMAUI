@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="unitechRFIDSampleMAUI.MainPage">
+
+    <ScrollView>
+        <VerticalStackLayout
+            Spacing="25"
+            Padding="30,0"
+            VerticalOptions="Center">
+
+            <!-- First row: RP902, HT730, RG768 -->
+            <Grid ColumnDefinitions="Auto,Auto,Auto"
+                  HorizontalOptions="Center"
+                  Margin="10"
+                  ColumnSpacing="10">
+                <Button
+                    x:Name="RP902Btn"
+                    Text="RP902"
+                    SemanticProperties.Hint="RP902 button"
+                    Clicked="OnRP902Clicked"
+                    Grid.Column="0"
+                    Margin="5"
+                    HorizontalOptions="Center"
+                    WidthRequest="-1"/>
+
+                <Button
+                    x:Name="HT730Btn"
+                    Text="HT730"
+                    SemanticProperties.Hint="HT730 button"
+                    Clicked="OnHT730Clicked"
+                    Grid.Column="1"
+                    Margin="5"
+                    HorizontalOptions="Center"
+                    WidthRequest="-1"/>
+
+                <Button
+                    x:Name="RG768Btn"
+                    Text="RG768"
+                    SemanticProperties.Hint="RG768 button"
+                    Clicked="OnRG768Clicked"
+                    Grid.Column="2"
+                    Margin="5"
+                    HorizontalOptions="Center"
+                    WidthRequest="-1"/>
+            </Grid>
+
+            <!-- Second row: PA768E, RP300, RP300 USB -->
+            <Grid ColumnDefinitions="Auto,Auto,Auto"
+                  HorizontalOptions="Center"
+                  Margin="10"
+                  ColumnSpacing="10">
+                <Button
+                    x:Name="PA768EBtn"
+                    Text="PA768E"
+                    SemanticProperties.Hint="PA768E button"
+                    Clicked="OnPA768EClicked"
+                    Grid.Column="0"
+                    Margin="5"
+                    HorizontalOptions="Center"
+                    WidthRequest="-1"/>
+
+                <Button
+                    x:Name="RP300Btn"
+                    Text="RP300"
+                    SemanticProperties.Hint="RP300 button"
+                    Clicked="OnRP300Clicked"
+                    Grid.Column="1"
+                    Margin="5"
+                    HorizontalOptions="Center"
+                    WidthRequest="-1"/>
+
+                <Button
+                    x:Name="RP300USBBtn"
+                    Text="RP300 USB"
+                    SemanticProperties.Hint="RP300 USB button"
+                    Clicked="OnRP300USBClicked"
+                    Grid.Column="2"
+                    Margin="5"
+                    HorizontalOptions="Center"
+                    WidthRequest="-1"/>
+            </Grid>
+
+            <!-- Third row: EA530 -->
+            <Grid ColumnDefinitions="*,*,*"
+                  HorizontalOptions="Center"
+                  Margin="10">
+                <Button
+                    x:Name="EA530Btn"
+                    Text="EA530"
+                    SemanticProperties.Hint="EA530 button"
+                    Clicked="OnEA530Clicked"
+                    Grid.Column="0"
+                    Margin="5"/>
+            </Grid>
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, ...</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, ...</value>
+  </resheader>
+
+  <!-- Device Information Strings -->
+  <data name="DeviceName">
+    <value>Device Name</value>
+  </data>
+  <data name="SKU">
+    <value>SKU</value>
+  </data>
+  <data name="Region">
+    <value>Region</value>
+  </data>
+  <data name="Version">
+    <value>Version</value>
+  </data>
+  <data name="RfidModule">
+    <value>RFID Module</value>
+  </data>
+  <data name="RfidModuleVersion">
+    <value>RFID Module Version</value>
+  </data>
+  <data name="EngineModule">
+    <value>Engine Module</value>
+  </data>
+  <data name="EngineModuleVersion">
+    <value>Engine Module Version</value>
+  </data>
+  <data name="SerialNumber">
+    <value>Serial Number</value>
+  </data>
+  <data name="Time">
+    <value>Time</value>
+  </data>
+  <data name="Beep">
+    <value>Beep</value>
+  </data>
+  <data name="ReadMode">
+    <value>Read Mode</value>
+  </data>
+  <data name="Vibrator">
+    <value>Vibrator</value>
+  </data>
+
+  <!-- Settings -->
+  <data name="Power">
+    <value>Power</value>
+  </data>
+
+  <!-- RFID Configuration Parameters -->
+  <data name="ContinuousMode">
+    <value>Continuous Mode</value>
+  </data>
+  <data name="InventoryTime">
+    <value>Inventory Time</value>
+  </data>
+  <data name="IdleTime">
+    <value>Idle Time</value>
+  </data>
+  <data name="Algorithm">
+    <value>Algorithm</value>
+  </data>
+  <data name="StartQ">
+    <value>Start Q</value>
+  </data>
+  <data name="MaxQ">
+    <value>Max Q</value>
+  </data>
+  <data name="MinQ">
+    <value>Min Q</value>
+  </data>
+  <data name="Target">
+    <value>Target</value>
+  </data>
+  <data name="Session">
+    <value>Session</value>
+  </data>
+  <data name="SelectMode">
+    <value>Select Mode</value>
+  </data>
+  <data name="Encoding">
+    <value>Encoding</value>
+  </data>
+  <data name="Tari">
+    <value>TARI</value>
+  </data>
+  <data name="BLF">
+    <value>BLF</value>
+  </data>
+  <data name="ToggleTarget">
+    <value>Toggle Target</value>
+  </data>
+  <data name="FastMode">
+    <value>Fast Mode</value>
+  </data>
+  <data name="DwellTime">
+    <value>Dwell Time</value>
+  </data>
+  <data name="RfMode">
+    <value>RF Mode</value>
+  </data>
+  <data name="LBT">
+    <value>LBT</value>
+  </data>
+  <data name="FastId">
+    <value>Fast ID</value>
+  </data>
+  <data name="TagFocus">
+    <value>Tag Focus</value>
+  </data>
+  <data name="PowerSavingMode">
+    <value>Power Saving Mode</value>
+  </data>
+  <data name="LbtRssi">
+    <value>LBT RSSI</value>
+  </data>
+  <data name="AntennaSwitchingMode">
+    <value>Antenna Switching Mode</value>
+  </data>
+  <data name="FrequencySwitchingMode">
+    <value>Frequency Switching Mode</value>
+  </data>
+  <data name="Profile">
+    <value>Profile</value>
+  </data>
+  <data name="AutoOffTime">
+    <value>Auto Off Time</value>
+  </data>
+  <data name="AutoScreenOffTime">
+    <value>Auto Screen Off Time</value>
+  </data>
+
+  <!-- UI Actions -->
+  <data name="Inventory">
+    <value>Inventory</value>
+  </data>
+  <data name="CustomInventory">
+    <value>Custom Inventory</value>
+  </data>
+  <data name="Stop">
+    <value>Stop</value>
+  </data>
+  <data name="Read">
+    <value>Read</value>
+  </data>
+  <data name="Write">
+    <value>Write</value>
+  </data>
+  <data name="Lock">
+    <value>Lock</value>
+  </data>
+  <data name="Unlock">
+    <value>Unlock</value>
+  </data>
+  <data name="FindTag">
+    <value>Find Tag</value>
+  </data>
+  <data name="Info">
+    <value>Info</value>
+  </data>
+  <data name="Settings">
+    <value>Settings</value>
+  </data>
+  <data name="Send">
+    <value>Send</value>
+  </data>
+
+  <data name="NoSGTIN">
+    <value>Not SGTIN-96/198 format</value>
+  </data>
+  <data name="Success">
+    <value>Success</value>
+  </data>
+</root>
